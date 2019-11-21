@@ -23,18 +23,28 @@ let a="999999";
 let count=0;
 for(i=+a;+a>0;i--) {
 	let arrA=a.split("");
+	if(+a<=99999){
+		arrA.unshift("0")
+	}
+	if(+a<=9999){
+		arrA.unshift("0","0")
+	}
+	if(+a<=999){
+		break;
+	}
+	let arrB=arrA.splice(3,3);
 	let c=0;
-	for(let i = 0; i < 3; i++){
+	for(let i = 0; i < arrA.length; i++){
 		f=+arrA[i]
     	c = c+f;
     }
 	let d=0;
-	for(let i = 3; i < arrA.length; i++){
-		f=+arrA[i]
+	for(let i = 0; i < arrB.length; i++){
+		f=+arrB[i]
     	d = d+f;
     }
     let y=c-d;
-    if(y===0) {
+    if(c===d) {
     	++count;
     }
 	a=--a;
@@ -44,17 +54,47 @@ console.log(count);
 
 /*
 
-let arrD=[null,null,null,null,null,null,null,null,null,];
-for(i=0;i<arrD.length;i++){
-let num=prompt("Укажите номер ячейки от 1 до 9:")
-let t=prompt("Укажите символ: Х или 0")
-console.log(i);
+let arrD=[null,null,null,null,null,null,null,null,null];
+for(i=0;i>=0;i++){
+    let num=prompt("Укажите номер ячейки от 1 до 9:")
+    let t=prompt("Укажите символ: Х или 0")
+    console.log(i);
     if (t==="X"){
         arrD[num-1]=1;
     }else if (t==="0"){
         arrD[num-1]=0;   
-    }
+    }else{
+        alert("Не корректный ввод")
     console.log(arrD); 
+    if(arrD[0]!=null&&arrD[1]!=null&&arrD[2]!=null&&arrD[3]!=null&&arrD[4]!=null&&arrD[5]!=null&&arrD[6]!=null&&arrD[7]!=null&&arrD[8]!=null) {
+        alert("Игра окончена")
+    break;
+    }
 }
+*/
+document.write('<div class="grid"><div class="a1"></div><div class="a2"></div><div class="a3"></div><div class="a4"></div><div class="a5"></div><div class="a6"></div><div class="a7"></div><div class="a8"></div><div class="a9"></div></div>');
 
-document.write('<div class="grid"><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div><div class="shard"></div></div>');*/
+
+//3. Задан массив  - [12,4,3,10,1,20]. Удалить из него наименьшее и наибольшее значение.
+console.time()
+let arrE=[12,4,3,10,1,20];
+let min=1; 
+let max=1;
+for (i=0;i<arrE.length;i++){
+    if(arrE[i]<min) {
+        min=arrE[i]
+    }else if(arrE[i]>max) {
+        max=arrE[i];
+    }
+}
+for(i=0;i<arrE.length;i++) {
+    if(min===arrE[i]){
+        console.log(i);
+        arrE.splice(i,1);
+    }
+    if (max===arrE[i]) {
+        arrE.splice(i,1);
+    }
+}
+console.log(arrE);
+console.timeEnd()
