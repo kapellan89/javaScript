@@ -23,7 +23,7 @@ let a="999999";
 let count=0;
 for(i=+a;+a>0;i--) {
 	let arrA=a.split("");
-	if(+a<=99999){
+	if(+a<=99999&&+a>9999){
 		arrA.unshift("0")
 	}
 	if(+a<=9999){
@@ -35,7 +35,7 @@ for(i=+a;+a>0;i--) {
 	let arrB=arrA.splice(3,3);
 	let c=0;
 	for(let i = 0; i < arrA.length; i++){
-		f=+arrA[i]
+		let f=+arrA[i]
     	c = c+f;
     }
 	let d=0;
@@ -52,11 +52,15 @@ for(i=+a;+a>0;i--) {
 }
 console.log(count);
 
-/*
+
 
 let arrD=[null,null,null,null,null,null,null,null,null];
 for(i=0;i>=0;i++){
     let num=prompt("Укажите номер ячейки от 1 до 9:")
+    if (arrD[num-1]!=null) {
+        alert("Поле уже занято");
+        continue;
+    }
     let t=prompt("Укажите символ: Х или 0")
     console.log(i);
     if (t==="X"){
@@ -65,14 +69,18 @@ for(i=0;i>=0;i++){
         arrD[num-1]=0;   
     }else{
         alert("Не корректный ввод")
+    }
+    if (arrD[0]===1) {
+        document.write('<div class="a1">X</div>')
+    }else if (arrD[0]===0) {
+        document.write('<div class="a1">0</div>')
+    }
     console.log(arrD); 
     if(arrD[0]!=null&&arrD[1]!=null&&arrD[2]!=null&&arrD[3]!=null&&arrD[4]!=null&&arrD[5]!=null&&arrD[6]!=null&&arrD[7]!=null&&arrD[8]!=null) {
         alert("Игра окончена")
     break;
     }
 }
-*/
-document.write('<div class="grid"><div class="a1"></div><div class="a2"></div><div class="a3"></div><div class="a4"></div><div class="a5"></div><div class="a6"></div><div class="a7"></div><div class="a8"></div><div class="a9"></div></div>');
 
 
 //3. Задан массив  - [12,4,3,10,1,20]. Удалить из него наименьшее и наибольшее значение.
@@ -97,4 +105,4 @@ for(i=0;i<arrE.length;i++) {
     }
 }
 console.log(arrE);
-console.timeEnd()
+console.timeEnd();
